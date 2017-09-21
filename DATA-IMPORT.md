@@ -1,4 +1,4 @@
-# DATA PREPARATION
+# DATA IMPORT
 
 **Before starting with command line it is important to download data files 
 from the following site** https://www.kaggle.com/c/outbrain-click-prediction. 

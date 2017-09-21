@@ -1,14 +1,13 @@
 # DATA PREPARATION
 
-** Before starting with command line it is important to download data files **
-from the following site https://www.kaggle.com/c/outbrain-click-prediction. 
+**Before starting with command line it is important to download data files 
+from the following site** https://www.kaggle.com/c/outbrain-click-prediction. 
 
-** These files are to be copied to your directory on the server. **
+**These files are to be copied to your directory on the server.**
 
 ## COMMAND LINE
 
-** In your directory open terminal window. **
-** Then run the following commands **
+**In your directory open terminal window and then run the following commands.**
 
 > Create Directory Structure on HDFS
 
@@ -43,13 +42,17 @@ $ hdfs dfs -put clicks_test.csv outbrain/clicks_test
 
 ## HIVE
 
-** Open Hive with HUE (http://quickstart.cloudera:8888/hue/editor/?type=hive) or hive shell ($ hive)
+**Open Hive with HUE (http://quickstart.cloudera:8888/hue/editor/?type=hive) or hive shell ($ hive)**
 
 > Create Database outbrain
+
+```
 CREATE DATABASE IF NOT EXISTS outbrain;
+```
 
+> Create data Tables 
 
-> Create Table as External (Hive will read from selected folder data as table, but the data will stay if table deleted)
+**(Hive will read from selected folder data as table, but the data will stay if table deleted)**
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS outbrain.page_views (
@@ -171,4 +174,4 @@ SELECT * FROM outbrain.page_views LIMIT 5;
 SELECT * FROM outbrain.promoted_content LIMIT 5;
 ```
 
-** Congratulations you have succesfully imported all data files and you are ready for next assigment. **
+**Congratulations you have succesfully imported all data files and you are ready for next assigment.**

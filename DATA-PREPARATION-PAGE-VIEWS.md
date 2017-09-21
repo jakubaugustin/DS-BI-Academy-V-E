@@ -88,7 +88,7 @@ pageViewsUpdate = pageViewsUpdate.withColumn("fullTime", from_unixtime((col("tim
 pageViewsUpdate.show(10)
 ```
 
-** Now to remove unnecessary timestamp.**
+**Now to remove unnecessary timestamp.**
 
 ```
 pageViewsUpdate = pageViewsUpdate.drop("timestamp").drop("fullTime").drop("state").drop("DMA")

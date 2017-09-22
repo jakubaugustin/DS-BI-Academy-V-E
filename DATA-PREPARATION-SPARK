@@ -114,7 +114,7 @@ pageViewsUpdate.repartition(1).write.format('csv').mode('overwrite').save("/user
 
 ## HIVE Commands
 
-**Lastly we need to save the final result to new Hive table**
+**Lastly we need to save the final result to new Hive table.**
 
 > Create New Table with Updated Fields
 

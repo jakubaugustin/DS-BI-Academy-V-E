@@ -199,6 +199,7 @@ eventsUpdate.show(5)
 ```
 
 > Save Transformed File to HDFS
+
 ```
 eventsUpdate.repartition(1).write.format('csv').mode('overwrite').save("/user/cloudera/outbrain/events_update")
 ```

@@ -91,7 +91,7 @@ pageViewsUpdate.show(10)
 **Now to remove unnecessary timestamp.**
 
 ```
-pageViewsUpdate = pageViewsUpdate.drop("timestamp").drop("fullTime").drop("state").drop("DMA")
+pageViewsUpdate = pageViewsUpdate.drop("timestamp").drop("fullTime")
 ```
 
 **To make sure we must replace all null values in the dataset with 0.**

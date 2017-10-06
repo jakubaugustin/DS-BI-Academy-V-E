@@ -3,11 +3,11 @@
 **Before starting with command line it is important to download data files 
 from the following site** https://www.kaggle.com/c/outbrain-click-prediction. 
 
-**These files are to be copied to your directory on the server.**
+**These files are to be copied to your directory on the server and unziped. Then from the same directory open Terminal and use command line for the following exercises.**
 
 ## COMMAND LINE
 
-**In your directory open terminal window and then run the following commands.**
+** Before importing data into the HDFS, we must firstly create directory structure, where the data will be stored on HDFS.**
 
 > Create Directory Structure on HDFS
 
@@ -25,6 +25,14 @@ $ hdfs dfs -mkdir outbrain/clicks_train
 $ hdfs dfs -mkdir outbrain/clicks_test
 ```
 
+** Now we can use the following commands to check if the directory structure exist. We can use the following command.**
+
+```
+$ hdfs dfs -ls outbrain
+```
+
+** Next step will be to load data into the prepared directories. Loading data is done by using the command put. These commands will move data from local directory on server to hdfs. **
+
 > Copy Data From Local Repository to HDFS
 
 ```
@@ -40,9 +48,21 @@ $ hdfs dfs -put clicks_train.csv outbrain/clicks_train
 $ hdfs dfs -put clicks_test.csv outbrain/clicks_test
 ```
 
+** Now to check if the data are in the hdfs. We can use the following commands.**
+
+> Look inside the file in HDFS
+
+```
+$ hdfs dfs -cat outbrain/promoted_content/promoted_content.csv | head
+```
+
+** When the data are properly loaded into hdfs, we can use Hive to create "database" on them and be able to use SQL to access and work with the imported data.**
+
 ## HIVE
 
-**Open Hive with HUE (http://quickstart.cloudera:8888/hue/editor/?type=hive) or hive shell ($ hive)**
+**We can access Hive with HUE (http://quickstart.cloudera:8888/hue/editor/?type=hive) or hive shell ($ hive) in command line. Here we are showing approach using command line.**
+
+** Before working with the data we need to create database and tables from the files in hdfs directory. We will name the tables same way the directories are named.**
 
 > Create Database outbrain
 
@@ -52,7 +72,7 @@ CREATE DATABASE IF NOT EXISTS outbrain;
 
 > Create data Tables 
 
-**(Hive will read from selected folder data as table, but the data will stay if table deleted)**
+** CREATE EXTERNAL TABLE means that the table will not delete the data if the table is droped. This will keep the data in hdfs for further usage.**
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS outbrain.page_views (
@@ -67,6 +87,8 @@ STORED AS TEXTFILE
 LOCATION "/user/cloudera/outbrain/page_views"
 tblproperties("skip.header.line.count"="1");
 ```
+
+** After declaring table columns and their variable types we then say how the file is formatted and where it is stored. Last line declares if the source file should skip the first line (header).**
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS outbrain.promoted_content (
@@ -159,6 +181,9 @@ STORED AS TEXTFILE
 LOCATION "/user/cloudera/outbrain/clicks_test"
 tblproperties("skip.header.line.count"="1");
 ```
+
+** When all tables are loaded into hive, we can test the tables if the data have imported properly. We need to get 5 rows from each of the created tables.**
+
 
 > Test Table Contents
 

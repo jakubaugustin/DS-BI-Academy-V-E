@@ -1,21 +1,21 @@
 
 # DATA PREPARATION 
 
-**This assigment requires to already have completed DATA IMPORT.**
-
-**This assigment focuses mainly on using spark-shell with python (Pyspark)**
+**This assigment requires to already have completed 1) DATA IMPORT. In the previous assigment we loaded data into hdfs. Data in hdfs are distributed across multiple servers in clusted. This assigment show how to work with distributed datasets with using PySpark. PySpark allow to the user to transform datasets and create machine learning models. In this assigment we will focus on transforming datasets.**
 
 ## Pyspark Commands
+
+**To run PySpark we only need to open command line and write the following command.**
 
 > Open PySpark
 
 ```
-pyspark
+$ pyspark
 ```
 
 ## PAGE-VIEWS TABLE
 
-**Firstly we will start with table page_views and do some minor adjustments.**
+**Firstly we will start with table page_views and do some minor adjustments. We need find the user country and time when the page was viewed.**
 
 > Load Data from HDFS
 
@@ -23,7 +23,7 @@ pyspark
 pageViews = spark.read.format("CSV").option("header","true").load("outbrain/page_views/page_views_sample.csv")
 ```
 
-**Now is possible to start playing with the file.**
+**Count the number of rows.**
 
 >Counts the number of rows in pageViews table
 

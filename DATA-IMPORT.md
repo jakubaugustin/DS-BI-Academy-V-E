@@ -31,7 +31,7 @@ $ hdfs dfs -mkdir outbrain/clicks_test
 $ hdfs dfs -ls outbrain
 ```
 
-**Next step will be to load data into the prepared directories. Loading data is done by using the command put. These commands will move data from local directory on server to hdfs. **
+**Next step will be to load data into the prepared directories. Loading data is done by using the command put. These commands will move data from local directory on server to hdfs.**
 
 > Copy Data From Local Repository to HDFS
 
